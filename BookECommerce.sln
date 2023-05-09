@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookECommerce", "BookECommerce\BookECommerce.csproj", "{B2B55B49-A693-4F7F-A1D9-C2CD5BCB7D54}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookECommerce.Tests", "BookECommerce.Tests\BookECommerce.Tests.csproj", "{C54556F1-D8A6-4828-AF26-13B9A1F30E32}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{B2B55B49-A693-4F7F-A1D9-C2CD5BCB7D54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2B55B49-A693-4F7F-A1D9-C2CD5BCB7D54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2B55B49-A693-4F7F-A1D9-C2CD5BCB7D54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C54556F1-D8A6-4828-AF26-13B9A1F30E32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C54556F1-D8A6-4828-AF26-13B9A1F30E32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C54556F1-D8A6-4828-AF26-13B9A1F30E32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C54556F1-D8A6-4828-AF26-13B9A1F30E32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
