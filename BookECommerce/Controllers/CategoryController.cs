@@ -31,6 +31,11 @@ namespace BookECommerce.Controllers
                 ModelState.AddModelError("Name", "Category Name cannot be the same as Display Order");
             }
             
+            if (CategoryAlreadyExists(category))
+            {
+                ModelState.AddModelError("Name", "Category with this name already exists");
+            }
+            
             if (ModelState.IsValid)
             {
                 _dbContext.Categories.Add(category);
@@ -46,6 +51,16 @@ namespace BookECommerce.Controllers
         [HttpPost]
         public IActionResult Edit(Category category)
         {
+            if (CategoryNameIsEqualToDisplayOrder(category))
+            {
+                ModelState.AddModelError("Name", "Category Name cannot be the same as Display Order");
+            }
+
+            if (CategoryAlreadyExists(category))
+            {
+                ModelState.AddModelError("Name", "Category with this name already exists");
+            }
+            
             if (ModelState.IsValid)
             {
                 _dbContext.Categories.Update(category);
@@ -84,6 +99,13 @@ namespace BookECommerce.Controllers
         private static bool CategoryNameIsEqualToDisplayOrder(Category category)
         {
             return category.Name == category.DisplayOrder.ToString();
+        }
+
+        private bool CategoryAlreadyExists(Category category)
+        {
+            var doesCategoryNameAlreadyExist = _dbContext.Categories
+                .Any(c => c.Name == category.Name && c.Id != category.Id);
+            return doesCategoryNameAlreadyExist;
         }
     }
 }
