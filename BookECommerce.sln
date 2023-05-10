@@ -4,6 +4,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookECommerce", "BookEComme
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookECommerce.Tests", "BookECommerce.Tests\BookECommerce.Tests.csproj", "{C54556F1-D8A6-4828-AF26-13B9A1F30E32}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookECommerce.DataAccess", "BookECommerce.DataAccess\BookECommerce.DataAccess.csproj", "{76DDC5DF-2447-4514-B120-FDC3AB3DB491}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookECommerce.Models", "BookECommerce.Models\BookECommerce.Models.csproj", "{61992C2E-751D-46A9-BBBF-C417AD919424}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookECommerce.Utility", "BookECommerce.Utility\BookECommerce.Utility.csproj", "{F7F256F5-C075-4A57-A36C-28AC7FA2C618}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +24,17 @@ Global
 		{C54556F1-D8A6-4828-AF26-13B9A1F30E32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C54556F1-D8A6-4828-AF26-13B9A1F30E32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C54556F1-D8A6-4828-AF26-13B9A1F30E32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76DDC5DF-2447-4514-B120-FDC3AB3DB491}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76DDC5DF-2447-4514-B120-FDC3AB3DB491}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76DDC5DF-2447-4514-B120-FDC3AB3DB491}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76DDC5DF-2447-4514-B120-FDC3AB3DB491}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61992C2E-751D-46A9-BBBF-C417AD919424}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61992C2E-751D-46A9-BBBF-C417AD919424}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61992C2E-751D-46A9-BBBF-C417AD919424}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61992C2E-751D-46A9-BBBF-C417AD919424}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7F256F5-C075-4A57-A36C-28AC7FA2C618}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7F256F5-C075-4A57-A36C-28AC7FA2C618}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7F256F5-C075-4A57-A36C-28AC7FA2C618}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7F256F5-C075-4A57-A36C-28AC7FA2C618}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

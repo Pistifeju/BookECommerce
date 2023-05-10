@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using BookECommerce.Data;
+﻿using BookECommerce.DataAccess.Data;
 using BookECommerce.Models;
 using Microsoft.AspNetCore.Mvc;
 

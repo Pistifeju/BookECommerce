@@ -1,5 +1,5 @@
 using BookECommerce.Controllers;
-using BookECommerce.Data;
+using BookECommerce.DataAccess.Data;
 using BookECommerce.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
