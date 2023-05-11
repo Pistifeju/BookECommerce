@@ -1,5 +1,6 @@
-using BookECommerce.Controllers;
+using BookECommerce.Areas.Admin.Controllers;
 using BookECommerce.DataAccess.Data;
+using BookECommerce.DataAccess.Repository;
 using BookECommerce.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +26,7 @@ namespace BookECommerce.Tests.ControllersTests
             _dbContext = new ApplicationDbContext(options);
             ResetDatabase();
             SeedDatabase();
-            _sut = new CategoryController(_dbContext);
+            _sut = new CategoryController(new UnitOfWork(_dbContext));
             SetupTempData();
         }
 
