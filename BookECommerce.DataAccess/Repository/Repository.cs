@@ -42,4 +42,9 @@ public class Repository<T> : IRepository<T> where T : class
     {
         _dbSet.RemoveRange(entity);
     }
+
+    public void DetachEntity(T entity)
+    {
+        _dbContext.Entry(entity).State = EntityState.Detached;
+    }
 }

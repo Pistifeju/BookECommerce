@@ -103,9 +103,16 @@ namespace BookECommerce.Areas.Admin.Controllers
 
         private bool CategoryAlreadyExists(Category category)
         {
-            var doesCategoryNameAlreadyExist = _unitOfWork.CategoryRepository.GetAll()
-                .Any(c => c.Name == category.Name && c.Id != category.Id);
-            return doesCategoryNameAlreadyExist;
+            var existingCategory = _unitOfWork.CategoryRepository.Get(c => c.Name == category.Name && c.Id != category.Id);
+    
+            if (existingCategory != null)
+            {
+                _unitOfWork.CategoryRepository.DetachEntity(category);
+                return true;
+            }
+
+            return false;
         }
+
     }
 }
