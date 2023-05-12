@@ -24,35 +24,28 @@ public class ProductController : Controller
 
     public IActionResult CreateNewProduct()
     {
-        IEnumerable<SelectListItem> categoryList = _unitOfWork.CategoryRepository.GetAll()
-            .Select(i => new SelectListItem
-            {
-                Text = i.Name,
-                Value = i.Id.ToString()
-            });
-        
-        ProductViewModel productViewModel = new()
+        var productViewModel = new ProductViewModel
         {
             Product = new Product(),
-            CategoryList = categoryList
+            CategoryList = GetCategoryList()
         };
+
         return View(productViewModel);
     }
 
     [HttpPost]
     public IActionResult CreateNewProduct(ProductViewModel viewModel)
     {
-        // TODO: Check if product already exists with this Id
-
-        if (ModelState.IsValid)
+        if (!ModelState.IsValid)
         {
-            _unitOfWork.ProductRepository.Add(viewModel.Product);
-            _unitOfWork.Save();
-            TempData["Success"] = "Product created successfully";
-            return RedirectToAction(nameof(Index));
+            viewModel.CategoryList = GetCategoryList();
+            return View(viewModel);
         }
 
-        return View();
+        _unitOfWork.ProductRepository.Add(viewModel.Product);
+        _unitOfWork.Save();
+        TempData["Success"] = "Product created successfully";
+        return RedirectToAction(nameof(Index));
     }
 
     public IActionResult Edit(int? id) => FindProductViewById(id);
@@ -60,15 +53,12 @@ public class ProductController : Controller
     [HttpPost]
     public IActionResult Edit(Product product)
     {
-        if (ModelState.IsValid)
-        {
-            _unitOfWork.ProductRepository.Update(product);
-            _unitOfWork.Save();
-            TempData["Success"] = "Product updated successfully";
-            return RedirectToAction(nameof(Index));
-        }
+        if (!ModelState.IsValid) return View(product);
 
-        return View(product);
+        _unitOfWork.ProductRepository.Update(product);
+        _unitOfWork.Save();
+        TempData["Success"] = "Product updated successfully";
+        return RedirectToAction(nameof(Index));
     }
 
     public IActionResult Delete(int? id) => FindProductViewById(id);
@@ -95,5 +85,15 @@ public class ProductController : Controller
         if (productFromDb == null) return NotFound();
 
         return View(productFromDb);
+    }
+
+    private IEnumerable<SelectListItem> GetCategoryList()
+    {
+        return _unitOfWork.CategoryRepository.GetAll()
+            .Select(i => new SelectListItem
+            {
+                Text = i.Name,
+                Value = i.Id.ToString()
+            });
     }
 }
