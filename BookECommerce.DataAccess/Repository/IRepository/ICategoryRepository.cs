@@ -6,4 +6,5 @@ namespace BookECommerce.DataAccess.Repository.IRepository;
 public interface ICategoryRepository : IRepository<Category>
 {
     void Update(Category category);
+    bool CategoryAlreadyExists(Category category);
 }

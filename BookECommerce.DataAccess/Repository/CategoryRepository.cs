@@ -14,8 +14,16 @@ public class CategoryRepository : Repository<Category>, ICategoryRepository
         _dbContext = dbContext;
     }
 
-    public void Update(Category category)
+    public bool CategoryAlreadyExists(Category category)
     {
-        _dbContext.Categories.Update(category);
+        var existingCategory = Get(c => c.Name == category.Name && c.Id != category.Id);
+    
+        if (existingCategory != null)
+        {
+            DetachEntity(category);
+            return true;
+        }
+
+        return false;
     }
 }

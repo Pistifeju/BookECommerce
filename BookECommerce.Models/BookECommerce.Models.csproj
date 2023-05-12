@@ -6,4 +6,10 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Reference Include="Microsoft.AspNetCore.Mvc.ViewFeatures">
+        <HintPath>..\..\..\..\..\..\usr\local\share\dotnet\shared\Microsoft.AspNetCore.App\7.0.5\Microsoft.AspNetCore.Mvc.ViewFeatures.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>

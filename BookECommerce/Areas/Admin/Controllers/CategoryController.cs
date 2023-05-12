@@ -30,7 +30,7 @@ namespace BookECommerce.Areas.Admin.Controllers
                 ModelState.AddModelError("Name", "Category Name cannot be the same as Display Order");
             }
             
-            if (CategoryAlreadyExists(category))
+            if (_unitOfWork.CategoryRepository.CategoryAlreadyExists(category))
             {
                 ModelState.AddModelError("Name", "Category with this name already exists");
             }
@@ -55,11 +55,11 @@ namespace BookECommerce.Areas.Admin.Controllers
                 ModelState.AddModelError("Name", "Category Name cannot be the same as Display Order");
             }
 
-            if (CategoryAlreadyExists(category))
+            if (_unitOfWork.CategoryRepository.CategoryAlreadyExists(category))
             {
                 ModelState.AddModelError("Name", "Category with this name already exists");
             }
-            
+
             if (ModelState.IsValid)
             {
                 _unitOfWork.CategoryRepository.Update(category);
@@ -83,6 +83,7 @@ namespace BookECommerce.Areas.Admin.Controllers
             _unitOfWork.Save();
             
             TempData["Success"] = "Category deleted successfully";
+            
             return RedirectToAction(nameof(Index));
         }
 
@@ -100,19 +101,5 @@ namespace BookECommerce.Areas.Admin.Controllers
         {
             return category.Name == category.DisplayOrder.ToString();
         }
-
-        private bool CategoryAlreadyExists(Category category)
-        {
-            var existingCategory = _unitOfWork.CategoryRepository.Get(c => c.Name == category.Name && c.Id != category.Id);
-    
-            if (existingCategory != null)
-            {
-                _unitOfWork.CategoryRepository.DetachEntity(category);
-                return true;
-            }
-
-            return false;
-        }
-
     }
 }

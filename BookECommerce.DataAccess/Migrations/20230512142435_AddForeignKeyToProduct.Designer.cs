@@ -3,6 +3,7 @@ using BookECommerce.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookECommerce.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230512142435_AddForeignKeyToProduct")]
+    partial class AddForeignKeyToProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,10 +88,6 @@ namespace BookECommerce.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<double>("ListPrice")
                         .HasColumnType("float");
 
@@ -119,7 +118,6 @@ namespace BookECommerce.DataAccess.Migrations
                             CategoryId = 1,
                             Description = "An exciting action-packed thriller that will keep you on the edge of your seat.",
                             ISBN = "978-1-234567-89-0",
-                            ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._SX258_BO1,204,203,200_.jpg",
                             ListPrice = 19.989999999999998,
                             Name = "Action-Packed Thriller",
                             Price = 14.99,
@@ -133,7 +131,6 @@ namespace BookECommerce.DataAccess.Migrations
                             CategoryId = 2,
                             Description = "Embark on an epic sci-fi adventure in a vast universe filled with wonders and dangers.",
                             ISBN = "978-9-876543-21-0",
-                            ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._SX258_BO1,204,203,200_.jpg",
                             ListPrice = 24.989999999999998,
                             Name = "Epic Sci-Fi Adventure",
                             Price = 19.989999999999998,
@@ -147,7 +144,6 @@ namespace BookECommerce.DataAccess.Migrations
                             CategoryId = 3,
                             Description = "Experience history come alive in this captivating and meticulously researched historical fiction.",
                             ISBN = "978-3-567890-12-4",
-                            ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._SX258_BO1,204,203,200_.jpg",
                             ListPrice = 29.989999999999998,
                             Name = "Historical Fiction Masterpiece",
                             Price = 24.989999999999998,
