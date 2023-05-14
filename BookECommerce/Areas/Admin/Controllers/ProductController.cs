@@ -23,7 +23,7 @@ public class ProductController : Controller
         return View(productList);
     }
 
-    public IActionResult Upsert(int? id) //Update and Insert
+    public IActionResult Upsert(int? id)
     {
         var productViewModel = new ProductViewModel
         {
@@ -49,8 +49,9 @@ public class ProductController : Controller
         string wwwRootPath = _webHostEnvironment.WebRootPath;
         if (imageFile != null)
         {
-            string fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
-            string productPath = Path.Combine(wwwRootPath, "images/product");
+            string fileName = Guid.NewGuid().ToString();
+            var uploads = Path.Combine(wwwRootPath, @"images/product");
+            var extension = Path.GetExtension(imageFile.FileName);
 
             if (!string.IsNullOrEmpty(viewModel.Product.ImageUrl))
             {
@@ -62,12 +63,12 @@ public class ProductController : Controller
                 }
             }
             
-            using ( var fileSteam = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
+            using (var fileSteam = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
             {
                 imageFile.CopyTo(fileSteam);
             }
             
-            viewModel.Product.ImageUrl = "images/product/" + fileName;
+            viewModel.Product.ImageUrl = @"images/product/" + fileName + extension;
         }
 
         if (viewModel.Product.Id == 0)
@@ -82,16 +83,6 @@ public class ProductController : Controller
         _unitOfWork.Save();
         TempData["Success"] = "Product created successfully";
         return RedirectToAction(nameof(Index));
-    }
-
-    private IActionResult FindProductViewById(int? id)
-    {
-        if (id is null or 0) return NotFound();
-
-        var productFromDb = _unitOfWork.ProductRepository.Get(c => c.Id == id);
-        if (productFromDb == null) return NotFound();
-
-        return View(productFromDb);
     }
 
     private IEnumerable<SelectListItem> GetCategoryList()
