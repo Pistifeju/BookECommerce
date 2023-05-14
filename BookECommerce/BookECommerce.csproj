@@ -21,7 +21,7 @@
       <ProjectReference Include="..\BookECommerce.DataAccess\BookECommerce.DataAccess.csproj" />
     </ItemGroup>
     <ItemGroup>
-      <Folder Include="Controllers\" />
+      <Folder Include="wwwroot\images\product\" />
     </ItemGroup>
     <ItemGroup>
       <AdditionalFiles Include="Areas\Admin\Views\Category\CreateNewCategory.cshtml" />

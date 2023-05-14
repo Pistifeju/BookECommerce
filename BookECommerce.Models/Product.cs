@@ -44,8 +44,9 @@ public class Product
     
     [Required(ErrorMessage = "Please select a category")]
     public int CategoryId { get; set; }
-    [ForeignKey("CategoryId")]
-    public Category Category { get; set; }
     
-    public string ImageUrl { get; set; }
+    [ForeignKey("CategoryId")]
+    public Category? Category { get; set; }
+    
+    public string? ImageUrl { get; set; }
 }
