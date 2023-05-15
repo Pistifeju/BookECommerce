@@ -9,6 +9,7 @@
     <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
     <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
     <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.5" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0-preview.3.23174.2" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0-preview.3.23174.2" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0-preview.3.23174.2">
@@ -19,6 +20,7 @@
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\BookECommerce.DataAccess\BookECommerce.DataAccess.csproj" />
+      <ProjectReference Include="..\BookECommerce.Utility\BookECommerce.Utility.csproj" />
     </ItemGroup>
     <ItemGroup>
       <Folder Include="wwwroot\images\product\" />
