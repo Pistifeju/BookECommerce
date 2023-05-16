@@ -4,6 +4,7 @@ using BookECommerce.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookECommerce.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230516143026_AddCompanyTable")]
+    partial class AddCompanyTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -72,135 +75,27 @@ namespace BookECommerce.DataAccess.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("City")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PostalCode")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("StreetAddress")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Companies");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            City = "New York",
-                            Name = "ABC Company",
-                            PhoneNumber = "123-456-7890",
-                            PostalCode = "10001",
-                            State = "NY",
-                            StreetAddress = "123 Main Street"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            City = "Los Angeles",
-                            Name = "XYZ Corporation",
-                            PhoneNumber = "987-654-3210",
-                            PostalCode = "90001",
-                            State = "CA",
-                            StreetAddress = "456 Elm Street"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            City = "Chicago",
-                            Name = "123 Industries",
-                            PhoneNumber = "555-123-4567",
-                            PostalCode = "60601",
-                            State = "IL",
-                            StreetAddress = "789 Oak Street"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            City = "San Francisco",
-                            Name = "Acme Enterprises",
-                            PhoneNumber = "777-888-9999",
-                            PostalCode = "94101",
-                            State = "CA",
-                            StreetAddress = "321 Pine Street"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            City = "Seattle",
-                            Name = "Global Solutions",
-                            PhoneNumber = "111-222-3333",
-                            PostalCode = "98101",
-                            State = "WA",
-                            StreetAddress = "654 Maple Street"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            City = "Austin",
-                            Name = "Tech Innovators",
-                            PhoneNumber = "444-555-6666",
-                            PostalCode = "78701",
-                            State = "TX",
-                            StreetAddress = "987 Cedar Street"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            City = "Boston",
-                            Name = "Dynamic Ventures",
-                            PhoneNumber = "999-888-7777",
-                            PostalCode = "02101",
-                            State = "MA",
-                            StreetAddress = "741 Birch Street"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            City = "Miami",
-                            Name = "Prime Industries",
-                            PhoneNumber = "222-333-4444",
-                            PostalCode = "33101",
-                            State = "FL",
-                            StreetAddress = "852 Walnut Street"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            City = "Denver",
-                            Name = "Infinite Solutions",
-                            PhoneNumber = "888-777-6666",
-                            PostalCode = "80201",
-                            State = "CO",
-                            StreetAddress = "369 Pineapple Street"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            City = "Phoenix",
-                            Name = "Smart Technologies",
-                            PhoneNumber = "333-444-5555",
-                            PostalCode = "85001",
-                            State = "AZ",
-                            StreetAddress = "147 Orange Street"
-                        });
                 });
 
             modelBuilder.Entity("BookECommerce.Models.Product", b =>
@@ -509,9 +404,6 @@ namespace BookECommerce.DataAccess.Migrations
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("CompanyId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()

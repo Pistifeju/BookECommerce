@@ -1,0 +1,77 @@
+@model BookECommerce.Models.Company
+
+<div class="card shadow table-borderless mt-4">
+    <div class="card-header bg-secondary m-lg-0">
+        <div class="row">
+            <div class="text-center text-md-center">
+                <h2 class="text-bg-dark">@(Model.Id != 0 ? "UPDATE" : "CREATE") COMPANY</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post" class="row" enctype="multipart/form-data">
+            <input asp-for="@Model.Id" hidden/>
+            <div class="row">
+                <div class="col-12">
+                    <div class="border p-3 mt-4">
+                        <div class="mb-3 row">
+                            <label asp-for="@Model.Name" class="p-0"></label>
+                            <input asp-for="@Model.Name" type="text" class="form-control"/>
+                            <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 row">
+                            <label asp-for="@Model.PhoneNumber" class="p-0"></label>
+                            <input asp-for="@Model.PhoneNumber" type="text" class="form-control"/>
+                            <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 row">
+                            <label asp-for="@Model.StreetAddress" class="p-0"></label>
+                            <input asp-for="@Model.StreetAddress" type="text" class="form-control"/>
+                            <span asp-validation-for="@Model.StreetAddress" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 row">
+                            <label asp-for="@Model.City" class="p-0"></label>
+                            <input asp-for="@Model.City" type="text" class="form-control"/>
+                            <span asp-validation-for="@Model.City" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 row">
+                            <label asp-for="@Model.State" class="p-0"></label>
+                            <input asp-for="@Model.State" type="text" class="form-control"/>
+                            <span asp-validation-for="@Model.State" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 row">
+                            <label asp-for="@Model.PostalCode" class="p-0"></label>
+                            <input asp-for="@Model.PostalCode" type="number" class="form-control"/>
+                            <span asp-validation-for="@Model.PostalCode" class="text-danger"></span>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-md-3">
+                                @if (@Model.Id != 0)
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">UPDATE</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">CREATE</button>
+                                }
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <a asp-controller="Company" asp-action="Index" class="btn btn-secondary border form-control">
+                                    BACK TO LIST
+                                </a>
+                            </div>
+                        </div>
+                        <div asp-validation-summary="All" class="pt-2 mt-2"></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts
+{
+    @{
+        <partial name="_ValidationScriptsPartial"></partial>
+    }
+}

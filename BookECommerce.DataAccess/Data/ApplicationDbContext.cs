@@ -17,10 +17,24 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     
     public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     
+    public DbSet<Company> Companies { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         
         base.OnModelCreating(modelBuilder);
+        
+        modelBuilder.Entity<Company>().HasData(
+            new Company { Id = 1, Name = "ABC Company", StreetAddress = "123 Main Street", City = "New York", State = "NY", PostalCode = "10001", PhoneNumber = "123-456-7890" },
+            new Company { Id = 2, Name = "XYZ Corporation", StreetAddress = "456 Elm Street", City = "Los Angeles", State = "CA", PostalCode = "90001", PhoneNumber = "987-654-3210" },
+            new Company { Id = 3, Name = "123 Industries", StreetAddress = "789 Oak Street", City = "Chicago", State = "IL", PostalCode = "60601", PhoneNumber = "555-123-4567" },
+            new Company { Id = 4, Name = "Acme Enterprises", StreetAddress = "321 Pine Street", City = "San Francisco", State = "CA", PostalCode = "94101", PhoneNumber = "777-888-9999" },
+            new Company { Id = 5, Name = "Global Solutions", StreetAddress = "654 Maple Street", City = "Seattle", State = "WA", PostalCode = "98101", PhoneNumber = "111-222-3333" },
+            new Company { Id = 6, Name = "Tech Innovators", StreetAddress = "987 Cedar Street", City = "Austin", State = "TX", PostalCode = "78701", PhoneNumber = "444-555-6666" },
+            new Company { Id = 7, Name = "Dynamic Ventures", StreetAddress = "741 Birch Street", City = "Boston", State = "MA", PostalCode = "02101", PhoneNumber = "999-888-7777" },
+            new Company { Id = 8, Name = "Prime Industries", StreetAddress = "852 Walnut Street", City = "Miami", State = "FL", PostalCode = "33101", PhoneNumber = "222-333-4444" },
+            new Company { Id = 9, Name = "Infinite Solutions", StreetAddress = "369 Pineapple Street", City = "Denver", State = "CO", PostalCode = "80201", PhoneNumber = "888-777-6666" },
+            new Company { Id = 10, Name = "Smart Technologies", StreetAddress = "147 Orange Street", City = "Phoenix", State = "AZ", PostalCode = "85001", PhoneNumber = "333-444-5555" }
+        );
         
         modelBuilder.Entity<Category>().HasData(
             new Category { Id = 1, Name = "Action", DisplayOrder = 1 },
