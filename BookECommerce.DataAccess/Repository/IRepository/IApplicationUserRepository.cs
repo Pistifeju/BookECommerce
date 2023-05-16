@@ -3,7 +3,6 @@ using BookECommerce.Models;
 
 namespace BookECommerce.DataAccess.Repository.IRepository;
 
-public interface ICompanyRepository : IRepository<Company>
+public interface IApplicationUserRepository : IRepository<ApplicationUser>
 {
-    void Update(Company company);
 }

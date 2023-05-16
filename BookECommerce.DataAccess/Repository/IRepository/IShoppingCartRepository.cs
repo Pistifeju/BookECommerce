@@ -3,7 +3,7 @@ using BookECommerce.Models;
 
 namespace BookECommerce.DataAccess.Repository.IRepository;
 
-public interface ICompanyRepository : IRepository<Company>
+public interface IShoppingCartRepository : IRepository<ShoppingCart>
 {
-    void Update(Company company);
+    void Update(ShoppingCart shoppingCart);
 }

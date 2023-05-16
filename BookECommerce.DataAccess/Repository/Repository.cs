@@ -17,9 +17,13 @@ public class Repository<T> : IRepository<T> where T : class
         _dbContext.Products.Include(u => u.Category);
     }
     
-    public IEnumerable<T> GetAll(string? includeProperties = null)
+    public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null)
     {
         IQueryable<T> query = _dbSet;
+        if (filter != null)
+        {
+            query = query.Where(filter);
+        }
         if (!string.IsNullOrEmpty(includeProperties))
         {
             foreach (var includeProperty in includeProperties.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries))
@@ -30,8 +34,13 @@ public class Repository<T> : IRepository<T> where T : class
         return query.ToList();
     }
 
-    public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null)
+    public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracking = false)
     {
+        if (!tracking)
+        {
+            _dbSet.AsNoTracking();
+        }
+        
         IQueryable<T> query = _dbSet;
         if (!string.IsNullOrEmpty(includeProperties))
         {

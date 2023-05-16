@@ -7,5 +7,7 @@ public interface IUnitOfWork
     
     ICompanyRepository CompanyRepository { get; }
     
+    IShoppingCartRepository ShoppingCartRepository { get; }
+    
     void Save();
 }

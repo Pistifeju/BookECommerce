@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics;
+using System.Security.Claims;
 using BookECommerce.DataAccess.Repository.IRepository;
 using BookECommerce.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookECommerce.Areas.Customer.Controllers;
@@ -25,8 +27,47 @@ public class HomeController : Controller
     public IActionResult Details(int id)
     {
         Product product = _unitOfWork.ProductRepository.Get(p=> p.Id == id, includeProperties:"Category");
-        return View(product);
+        ShoppingCart shoppingCart = new ShoppingCart()
+        {
+            Product = product,
+            Count = 1,
+            ProductId = id
+        };
+        return View(shoppingCart);
     } 
+  
+    [HttpPost]
+    [Authorize]
+    public IActionResult Details(ShoppingCart shoppingCart)
+    {
+        var claimsIdentity = (ClaimsIdentity)User.Identity;
+        var userId = claimsIdentity?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (userId == null)
+        {
+            return RedirectToAction(nameof(Index));
+        }
+
+        shoppingCart.ApplicationUserId = userId;
+
+        ShoppingCart cartFromDatabase = _unitOfWork.ShoppingCartRepository
+            .Get(u => u.ApplicationUserId == userId && u.ProductId == shoppingCart.ProductId);
+
+        if (cartFromDatabase != null)
+        {
+            cartFromDatabase.Count += shoppingCart.Count;
+            _unitOfWork.ShoppingCartRepository.Update(cartFromDatabase);
+        }
+        else
+        {
+            _unitOfWork.ShoppingCartRepository.Add(shoppingCart);
+        }
+
+        shoppingCart.Id = 0; //Hackish way to solve the IDENTITY_INSERT to ON error
+        _unitOfWork.Save();
+
+        return RedirectToAction(nameof(Index));
+    }
+
 
     public IActionResult Privacy()
     {
