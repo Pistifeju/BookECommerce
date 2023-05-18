@@ -1,0 +1,71 @@
+@{
+    var status = Context.Request.Query["status"];
+    var statusTypes = new[] { "pending", "inprocess", "completed", "approved", "all" };
+    var displayNames = new Dictionary<string, string> {
+        { "pending", "Payment Pending" },
+        { "inprocess", "In Process" },
+        { "completed", "Completed" },
+        { "approved", "Approved" },
+        { "all", "All" }
+    };
+    var statusClasses = statusTypes.ToDictionary(t => t, t => t == status ? "active text-white bg-primary" : "text-primary");
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>title</title>
+</head>
+<body>
+<div class="container">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">
+                ORDER LIST
+            </h2>
+        </div>
+    </div>
+    <div class="d-flex justify-content-between pb-5 pt-2">
+            <span></span>
+            <ul class="list-group list-group-horizontal-sm">
+                @foreach (var statusType in statusClasses.Keys)
+                {
+                    <a style="text-decoration: none;" asp-controller="Order" asp-action="Index" asp-route-status="@statusType">
+                        <li class="list-group-item @statusClasses[statusType]">@displayNames[statusType]</li>
+                    </a>
+                }
+            </ul>
+        </div>
+    <table id="tblData" class="table table-hover" style="width: 100%">
+        <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Phone Number
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Total
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+    </table>
+</div>
+</body>
+</html>
+
+@section Scripts
+{
+    <script src="/js/order.js"></script>
+}
