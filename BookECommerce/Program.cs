@@ -19,7 +19,6 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkSto
     .AddDefaultTokenProviders();
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<IEmailSender, EmailSender>();
 
 builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
 
