@@ -133,13 +133,15 @@ namespace BookECommerce.Areas.Identity.Pages.Account
         {
             Input = new()
             {
-                RoleList = _roleManager.Roles.Select(x => x.Name).Select(i => new SelectListItem
-                {
-                    Text = i,
-                    Value = i
-                })
+                RoleList = _roleManager.Roles
+                    .Where(x => x.Name != "Admin" && x.Name != "Employee")
+                    .Select(x => new SelectListItem
+                    {
+                        Text = x.Name,
+                        Value = x.Name
+                    })
             };
-            
+
             Input.CompanyList = _unitOfWork.CompanyRepository.GetAll().Select(i => new SelectListItem
             {
                 Text = i.Name,
