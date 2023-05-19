@@ -53,7 +53,7 @@ public class ProductController : Controller
         if (imageFile != null)
         {
             string fileName = Guid.NewGuid().ToString();
-            var uploads = Path.Combine(wwwRootPath, @"images/product");
+            var uploads = Path.Combine(wwwRootPath, @"/images/product");
             var extension = Path.GetExtension(imageFile.FileName);
 
             if (!string.IsNullOrEmpty(viewModel.Product.ImageUrl))
@@ -71,7 +71,7 @@ public class ProductController : Controller
                 imageFile.CopyTo(fileSteam);
             }
             
-            viewModel.Product.ImageUrl = @"images/product/" + fileName + extension;
+            viewModel.Product.ImageUrl = @"/images/product/" + fileName + extension;
         }
 
         if (viewModel.Product.Id == 0)

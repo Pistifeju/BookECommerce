@@ -3,22 +3,9 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @model RegisterModel
 
-
 <div class="card shadow border-0 mt-4">
-    <div class="card-header bg-secondary bg-gradient ml-0 py-4">
+    <div class="card-body">
         <div class="row">
-            <div class="col-12 text-center">
-                @if (User.IsInRole(SD.Role_Admin)) {
-                    <h2 class="py-2 text-white">Register - ADMIN PORTAL</h2>
-                }
-                else{
-                <h2 class="py-2 text-white">Register</h2>
-                }
-            </div>
-        </div>
-    </div>
-    <div class="card-body p-4">
-        <div class="row pt-3">
             <div class="col-md-12">
                 <form id="registerForm" class="row" asp-route-returnUrl="@Model.ReturnUrl" method="post">
                     <h3 class="border-bottom pb-3 mb-4 text-secondary text-center">Create a new account.</h3>

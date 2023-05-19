@@ -15,6 +15,7 @@
 
 </style>
 
+@using System.Globalization
 @model IEnumerable<BookECommerce.Models.Product>
 
 <div class="row pb-3">
@@ -30,10 +31,10 @@
                             <p class="card-title text-warning text-center">by <b>@product.Author</b></p>
                         </div>
                         <div class="p-lg-1">
-                            <p class="text-dark opacity-75 text-center mb-0">List Price: <span>@product.ListPrice.ToString("c")</span></p>
+                            <p class="text-dark opacity-75 text-center mb-0">List Price: <span>@product.ListPrice.ToString("c", new CultureInfo("en-US"))</span></p>
                         </div>
                         <div class="p-lg-1">
-                            <p class="text-dark opacity-75 text-center mt-0">As low as: <span>@product.Price100.ToString("c")</span></p>
+                            <p class="text-dark opacity-75 text-center mt-0">As low as: <span>@product.Price100.ToString("c", new CultureInfo("en-US"))</span></p>
                         </div>
                         <div>
                             <a asp-action="Details" asp-route-id="@product.Id" class="btn btn-primary bg-gradient border-0 form-control">Details</a>

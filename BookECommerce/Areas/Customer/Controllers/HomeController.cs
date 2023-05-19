@@ -42,6 +42,7 @@ public class HomeController : Controller
     {
         var claimsIdentity = (ClaimsIdentity)User.Identity;
         var userId = claimsIdentity?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        
         if (userId == null)
         {
             return RedirectToAction(nameof(Index));

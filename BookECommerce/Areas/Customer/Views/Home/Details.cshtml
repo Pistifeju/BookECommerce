@@ -1,3 +1,4 @@
+@using System.Globalization
 @model BookECommerce.Models.ShoppingCart
 
 <form method="post">
@@ -6,8 +7,8 @@
         <div class="card-header bg-secondary bg-gradient text-light py-4">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h3 class="text-white text-uppercase">@Model.Product.Name</h3>
-                    <p class="text-white-50 fw-semibold mb-0">by @Model.Product.Author</p>
+                    <h3 class="text-black text-uppercase">@Model.Product.Name</h3>
+                    <p class="text-black-50 fw-semibold mb-0">by @Model.Product.Author</p>
                 </div>
             </div>
         </div>
@@ -35,7 +36,7 @@
                         <div class="row ps-2">
                             <h6 class="text-dark text-opacity-50  pb-2">List Price:
                                 <span class="text-decoration-line-through">
-                                    @Model.Product.ListPrice.ToString("c")
+                                    @Model.Product.ListPrice.ToString("c", new CultureInfo("en-US"))
                                 </span>
                             </h6>
                         </div>
@@ -58,13 +59,13 @@
                                 <div>Price</div>
                             </div>
                             <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
-                                <div>@Model.Product.Price.ToString("c")</div>
+                                <div>@Model.Product.Price.ToString("c", new CultureInfo("en-US"))</div>
                             </div>
                             <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
-                                <div>@Model.Product.Price50.ToString("c")</div>
+                                <div>@Model.Product.Price50.ToString("c", new CultureInfo("en-US"))</div>
                             </div>
                             <div class="p-1 col-3 col-lg-2 bg-white text-warning fw-bold">
-                                <div>@Model.Product.Price100.ToString("c")</div>
+                                <div>@Model.Product.Price100.ToString("c", new CultureInfo("en-US"))</div>
                             </div>
                         </div>
                         <div class="row pl-2 my-3">
