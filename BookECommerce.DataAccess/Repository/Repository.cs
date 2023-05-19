@@ -42,6 +42,7 @@ public class Repository<T> : IRepository<T> where T : class
         }
         
         IQueryable<T> query = _dbSet;
+        query = query.Where(filter);
         if (!string.IsNullOrEmpty(includeProperties))
         {
             foreach (var includeProperty in includeProperties.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries))
@@ -49,7 +50,7 @@ public class Repository<T> : IRepository<T> where T : class
                 query = query.Include(includeProperty);
             }
         }
-        return query.Where(filter).FirstOrDefault();
+        return query.FirstOrDefault();
     }
 
     public void Add(T entity)
