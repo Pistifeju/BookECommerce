@@ -14,7 +14,7 @@ public class CompanyController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
     
-    public CompanyController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
+    public CompanyController(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
     }
@@ -44,14 +44,15 @@ public class CompanyController : Controller
         if (company.Id == 0)
         {
             _unitOfWork.CompanyRepository.Add(company);
+            TempData["Success"] = "Company created successfully";
         }
         else
         {
             _unitOfWork.CompanyRepository.Update(company);
+            TempData["Success"] = "Company updated successfully";
         }
         
         _unitOfWork.Save();
-        TempData["Success"] = "Company created successfully";
         return RedirectToAction(nameof(Index));
     }
 
